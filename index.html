@@ -13,21 +13,21 @@ function preload() {
   img = loadImage('https://gippoo.github.io/zachico/zac.png');
 }
   
-let life = 400;
+let life = 800;
 
 let zac = {
-  xpos: 200,
-  ypos: 200,
+  xpos: 400,
+  ypos: 400,
   speed: 2,
-  zright: 210,
-  zleft: 190,
-  ztop: 190,
-  zbot: 210,
+  zright: 400+177,
+  zleft: 400-177,
+  ztop: 400-221,
+  zbot: 400+221,
   show: function() {
     image(img,this.xpos,this.ypos,177,221);
   },
   spawnblob: function() {
-    blobs.push(new blob(this.xpos,this.ypos));
+    blobs.push(new blob(this.xpos+88.5,this.ypos+110.5));
   },
   movement() {
     if (keyIsDown(LEFT_ARROW ) && this.xpos > 10) {
@@ -44,10 +44,10 @@ let zac = {
     }
   },
   updateBox() {
-    this.zright = this.xpos += 20;
-    this.zleft = this.xpos -= 20;
-    this.ztop = this.ypos -= 20;
-    this.zbot = this.ypos += 20;
+    this.zright = this.xpos + 177;
+    this.zleft = this.xpos - 177;
+    this.ztop = this.ypos - 221;
+    this.zbot = this.ypos + 221;
   }
 }
 
@@ -86,7 +86,7 @@ class blob {
   remove() {
     if(this.right >= zac.zleft && this.left <= zac.zright && this.top <= zac.zbot && this.bot >=zac.ztop) {
       this.removeFlag = true;
-      life += 5;
+      life += 3;
     }
   }
   
@@ -110,7 +110,7 @@ function draw() {
   background(255);
   fill(50,191,40);
   rect(0,0,life,20);
-  life -= 0.25;
+  life -= 0.5;
   zac.show();
   zac.movement();
   zac.updateBox();
