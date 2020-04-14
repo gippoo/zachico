@@ -9,9 +9,6 @@
 </head>
 <body>
 <script>
-function preload() {
-  img = loadImage('https://gippoo.github.io/zachico/zac.png');
-}
 
 let life = 400;
 
@@ -24,7 +21,8 @@ let zac = {
   ztop: 190,
   zbot: 210,
   show: function() {
-    image(img, this.xpos,this.ypos,20,20);
+    fill(87, 189, 114);
+    circle(this.xpos,this.ypos,20);
     fill(0);
     textSize(20);
     text("ZACHICOO",this.xpos-50,this.ypos-20);
