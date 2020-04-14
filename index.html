@@ -11,6 +11,7 @@
 <script>
 function preload() {
   img = loadImage('https://gippoo.github.io/zachico/zac.png');
+  bg = loadImage'https://gippoo.github.io/zachico/midlane.png');
 }
   
 let life = 800;
@@ -134,7 +135,7 @@ function setup() {
 }
 
 function draw() {
-  background(210);
+  image(bg,800,800);
   fill(50,191,40);
   rect(0,0,life,20);
   life -= 0.5;
