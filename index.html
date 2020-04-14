@@ -103,7 +103,7 @@ class blob {
   remove() {
     if(this.right >= zac.zleft && this.left <= zac.zright && this.top <= zac.zbot && this.bot >=zac.ztop) {
       this.removeFlag = true;
-      life += 5;
+      life += 5.5;
     }
   }
   
@@ -154,7 +154,7 @@ function draw() {
   if (life < 0) {
     fill(0);
     textSize(32);
-    text("You have been slain",400,400);
+    text("You have been slain",300,400);
   }
 }
 </script>
