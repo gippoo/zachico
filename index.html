@@ -45,8 +45,8 @@ let zac = {
   },
   updateBox() {
     this.zright = this.xpos + 177;
-    this.zleft = this.xpos - 177;
-    this.ztop = this.ypos - 221;
+    this.zleft = this.xpos;
+    this.ztop = this.ypos;
     this.zbot = this.ypos + 221;
   }
 }
@@ -57,18 +57,18 @@ class blob {
     if (random(-1,1) >= 0) { 
       if (random(-1,1) >= 0) {
         this.x = x + random(90,130);
-        this.y = y + random(-70,70);
+        this.y = y + random(-100, 100);
       } else {
         this.x = x - random(90,130);
-        this.y = y + random(-70,70);
+        this.y = y + random(-100,100);
       }
     } else {
       if (random(-1,1) >= 0) {
         this.y = y + random(120,160);
-        this.x = x + random(-70,70);
+        this.x = x + random(-100,100);
       } else {
         this.y = y - random(120,160);
-        this.x = x + random(-70,70);
+        this.x = x + random(-100,100);
       }
     }
     this.removeFlag = false;
