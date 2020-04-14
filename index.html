@@ -33,13 +33,13 @@ let zac = {
     if (keyIsDown(LEFT_ARROW ) && this.xpos > 10) {
       this.xpos -= this.speed;
     }
-    if (keyIsDown(RIGHT_ARROW) && this.xpos < 390) {
+    if (keyIsDown(RIGHT_ARROW) && this.xpos < 1190) {
       this.xpos += this.speed;
     }
     if (keyIsDown(UP_ARROW) && this.ypos > 35) {
       this.ypos -= this.speed;
     }
-    if (keyIsDown(DOWN_ARROW) && this.ypos < 390) {
+    if (keyIsDown(DOWN_ARROW) && this.ypos < 1190) {
       this.ypos += this.speed;
     }
   },
@@ -103,7 +103,7 @@ function keyPressed() {
 }
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(1200, 1200);
 }
 
 function draw() {
