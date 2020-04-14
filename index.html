@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gary Ip - Blobs</title>
+<link rel="shortcut icon" href="https://github.com/gippoo/gippoo.github.io/raw/master/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://github.com/gippoo/gippoo.github.io/raw/master/favicon.ico" type="image/x-icon">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
+</head>
+<body>
+<script>
 function preload() {
   img = loadImage('https://github.com/gippoo/zachico/raw/master/zac.png');
 }
@@ -13,8 +24,7 @@ let zac = {
   ztop: 190,
   zbot: 210,
   show: function() {
-    fill(87, 189, 114);
-    circle(this.xpos,this.ypos,20);
+    image(img, this.xpos,this.ypos,20,20);
     fill(0);
     textSize(20);
     text("ZACHICOO",this.xpos-50,this.ypos-20);
@@ -117,3 +127,6 @@ function draw() {
       }
   }
 }
+</script>
+</body>
+</html> 
