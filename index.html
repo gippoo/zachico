@@ -14,6 +14,13 @@ function preload() {
 }
   
 let life = 800;
+var moveXl = 0;
+var moveXr = 0;
+var moveYt = 0;
+var moveYb = 0;
+var angle = 0;
+var speedx = 0;
+var speedy = 0;
 
 let zac = {
   xpos: 400-88.5,
@@ -23,6 +30,7 @@ let zac = {
   zleft: 0,
   ztop: 0,
   zbot: 0,
+  zcenter: [0,0],
   show: function() {
     image(img,this.xpos,this.ypos,177,221);
   },
@@ -43,11 +51,20 @@ let zac = {
       this.ypos += this.speed;
     }
   },
+                                                              
+  mouseMove() {
+      if (!(moveXl < this.zcenter[0] && moveXr > this.zcenter[0]) || !(moveYt < this.zcenter[1] && moveYb > this.zcenter[1])) {
+        this.xpos += speedx;
+        this.ypos += speedy;
+       }
+  },
+                                                              
   updateBox() {
     this.zright = this.xpos + 177;
     this.zleft = this.xpos;
     this.ztop = this.ypos;
     this.zbot = this.ypos + 221;
+    this.zcenter = [this.xpos+88.5,this.ypos+110.5]
   }
 }
 
@@ -101,6 +118,16 @@ function keyPressed() {
     zac.spawnblob();
   }
 }
+                                                              
+function mouseClicked() {
+  moveXl = mouseX - zac.speed;
+  moveXr = mouseX + zac.speed;
+  moveYt = mouseY - zac.speed;
+  moveYb = mouseY + zac.speed;
+  angle = Math.atan2((mouseY-zac.zcenter[1]),(mouseX-zac.zcenter[0]));
+  speedx = zac.speed*Math.cos(angle);
+  speedy = zac.speed*Math.sin(angle);
+}
 
 function setup() {
   createCanvas(800, 800);
@@ -113,6 +140,7 @@ function draw() {
   life -= 0.5;
   zac.show();
   zac.movement();
+  zac.mouseMove();
   zac.updateBox();
   for (let thing of blobs) {
     thing.show();
