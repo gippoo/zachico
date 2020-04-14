@@ -1,0 +1,115 @@
+let life = 400;
+
+let zac = {
+  xpos: 200,
+  ypos: 200,
+  speed: 2,
+  zright: 210,
+  zleft: 190,
+  ztop: 190,
+  zbot: 210,
+  show: function() {
+    fill(87, 189, 114);
+    circle(this.xpos,this.ypos,20);
+    fill(0);
+    textSize(20);
+    text("ZACHICOO",this.xpos-50,this.ypos-20);
+  },
+  spawnblob: function() {
+    blobs.push(new blob(this.xpos,this.ypos));
+  },
+  movement() {
+    if (keyIsDown(LEFT_ARROW ) && this.xpos > 10) {
+      this.xpos -= this.speed;
+    }
+    if (keyIsDown(RIGHT_ARROW) && this.xpos < 390) {
+      this.xpos += this.speed;
+    }
+    if (keyIsDown(UP_ARROW) && this.ypos > 35) {
+      this.ypos -= this.speed;
+    }
+    if (keyIsDown(DOWN_ARROW) && this.ypos < 390) {
+      this.ypos += this.speed;
+    }
+  },
+  updateBox() {
+    this.zright = this.xpos += 20;
+    this.zleft = this.xpos -= 20;
+    this.ztop = this.ypos -= 20;
+    this.zbot = this.ypos += 20;
+  }
+}
+
+
+class blob {
+  constructor(x, y) {
+    if (random(-1,1) >= 0) { 
+      if (random(-1,1) >= 0) {
+        this.x = x + random(40,70);
+        this.y = y + random(-70,70);
+      } else {
+        this.x = x - random(40,70);
+        this.y = y + random(-70,70);
+      }
+    } else {
+      if (random(-1,1) >= 0) {
+        this.y = y + random(40,70);
+        this.x = x + random(-70,70);
+      } else {
+        this.y = y - random(40,70);
+        this.x = x + random(-70,70);
+      }
+    }
+    this.removeFlag = false;
+    this.right = this.x + 5;
+    this.left = this.x - 5;
+    this.top = this.y - 5;
+    this.bot = this.y + 5;
+  }
+  
+  show() {
+   fill(87, 189, 114);
+   circle(this.x,this.y,10);
+  }
+  
+  remove() {
+    if(this.right >= zac.zleft && this.left <= zac.zright && this.top <= zac.zbot && this.bot >=zac.ztop) {
+      this.removeFlag = true;
+      life += 5;
+    }
+  }
+  
+}
+
+let blobs = []
+
+
+
+function keyPressed() {
+  if (keyCode === 87) {
+    zac.spawnblob();
+  }
+}
+
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(255);
+  fill(50,191,40);
+  rect(0,0,life,20);
+  life -= 0.25;
+  zac.show();
+  zac.movement();
+  zac.updateBox();
+  for (let thing of blobs) {
+    thing.show();
+    thing.remove();
+  }
+  for (let i = 0; i < blobs.length; i++) {
+      if (blobs[i].removeFlag) {
+         blobs.splice(i,1); 
+      }
+  }
+}
