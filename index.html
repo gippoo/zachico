@@ -123,6 +123,10 @@ function draw() {
          blobs.splice(i,1); 
       }
   }
+  if (life < 0) {
+    fill(0);
+    text("You have been slain");
+  }
 }
 </script>
 </body>
